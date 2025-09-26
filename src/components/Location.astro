@@ -1,0 +1,34 @@
+---
+// src/components/Location.astro
+// GANTI 'src' DI BAWAH DENGAN KODE EMBED GOOGLE MAPS ANDA
+const mapEmbedSrc = "https://www.google.com/maps/embed/v1/place?q=Ananta%20Barbershop&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8";
+---
+<section id="lokasi" class="py-20 bg-slate-900 text-white">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-4xl font-bold mb-6" style="font-family: 'Playfair Display', serif;">Kunjungi Kami di Jember</h2>
+                <div class="space-y-4 text-lg text-slate-300">
+                    <p><strong>Alamat:</strong><br>Jl. Kalimantan No.123, Krajan Timur, Sumbersari, Kabupaten Jember, Jawa Timur 68121</p>
+                    <p><strong>Jam Buka:</strong><br>Setiap Hari: 10:00 - 21:00 WIB</p>
+                    <p><strong>Telepon / WhatsApp:</strong><br>0812-3456-7890</p>
+                </div>
+                <a href="https://www.google.com/maps/place/Ananta+Barbershop/@-8.1784508,113.7164424,17z/data=!4m6!3m5!1s0x2dd695cd083fb95f:0x8163a6b25e650d02!8m2!3d-8.1785166!4d113.7164124!16s%2Fg%2F11vr1v10ds?entry=ttu&g_ep=EgoyMDI1MDkyMy4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="mt-8 inline-block bg-brand-gold text-slate-900 font-bold px-6 py-3 rounded-md hover:bg-amber-500 transition-colors">
+                    Lihat di Google Maps
+                </a>
+            </div>
+            <div class="aspect-video rounded-lg overflow-hidden">
+                <iframe
+                    src={mapEmbedSrc}
+                    width="100%"
+                    height="100%"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="Lokasi Ananta Barbershop di Google Maps">
+                </iframe>
+            </div>
+        </div>
+    </div>
+</section>

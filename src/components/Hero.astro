@@ -1,0 +1,26 @@
+---
+// src/components/Hero.astro
+---
+<section class="relative min-h-screen flex items-center justify-center text-center text-white overflow-hidden">
+    <div class="absolute inset-0 bg-slate-900 z-0">
+        <img src="/doku4.jpg" 
+             alt="Seorang barber profesional sedang memotong rambut klien di Ananta Barbershop" 
+             class="w-full h-full object-cover opacity-30">
+    </div>
+    <div class="relative z-10 container mx-auto px-4">
+        <h1 class="text-4xl md:text-7xl font-bold leading-tight tracking-tight mb-4" style="font-family: 'Playfair Display', serif;">
+            Gaya Rambut Presisi, <br> Percaya Diri Maksimal.
+        </h1>
+        <p class="max-w-2xl mx-auto text-lg md:text-xl text-slate-300 mb-8">
+            Temukan kembali gaya Anda di Ananta Barbershop, tempat di mana teknik klasik bertemu dengan tren modern di Jember.
+        </p>
+        <a href="https://wa.me/6281234567890?text=Halo%20Ananta%20Barbershop,%20saya%20mau%20booking." target="_blank" class="bg-brand-gold text-white-300 font-bold px-8 py-4 rounded-md hover:bg-amber-500 transition-transform hover:scale-105 inline-block text-lg">
+            Booking Online
+        </a>
+    </div>
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+        <svg class="w-6 h-6 text-white" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+            <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        </svg>
+    </div>
+</section>

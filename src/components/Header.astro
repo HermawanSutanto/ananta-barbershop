@@ -1,0 +1,150 @@
+---
+const navLinks = [
+    { href: "#layanan", text: "Layanan", sectionId: "layanan" },
+    { href: "#why-us", text: "Keunggulan", sectionId: "why-us" },
+    { href: "#galeri", text: "Galeri", sectionId: "galeri" },
+    { href: "#lokasi", text: "Lokasi", sectionId: "lokasi" },
+];
+---
+<header id="main-header" class="fixed top-0 left-0 right-0 z-50 text-white transition-all duration-300 ease-in-out">
+    <div class="container mx-auto px-4">
+        <div class="flex items-center justify-between h-20">
+            <a href="/" class="text-2xl font-bold tracking-wider" style="font-family: 'Playfair Display', serif;">
+                ANANTA
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8">
+                {navLinks.map(link => (
+                    <a href={link.href} data-section={link.sectionId} class="nav-link relative group font-medium">
+                        <span>{link.text}</span>
+                        <span class="absolute bottom-0 left-0 w-full h-0.5 bg-brand-gold scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
+                    </a>
+                ))}
+            </nav>
+
+            <a href="https://wa.me/6281234567890?text=Halo%20Ananta%20Barbershop,%20saya%20mau%20booking." target="_blank" class="hidden md:inline-block bg-brand-gold text-white font-bold px-6 py-2.5 rounded-md hover:bg-amber-500 transition-colors">
+                Booking Sekarang
+            </a>
+            
+            <button id="menu-toggle" class="md:hidden z-50 flex flex-col justify-around w-6 h-6 cursor-pointer">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<div id="mobile-menu" class="invisible opacity-0 fixed inset-0 text-white bg-slate-900/95 z-40 flex flex-col items-center justify-center transition-opacity duration-300 ease-in-out">
+    <nav class="flex flex-col items-center gap-8 text-2xl">
+        {navLinks.map(link => (
+            <a href={link.href} class="nav-link-mobile hover:text-brand-gold transition-colors">{link.text}</a>
+        ))}
+    </nav>
+    <a href="https://wa.me/6281234567890?text=Halo%20Ananta%20Barbershop,%20saya%20mau%20booking." target="_blank" class="mt-12 bg-brand-gold text-slate-900 font-bold px-8 py-4 rounded-md hover:bg-amber-500 transition-colors">
+        Booking Sekarang
+    </a>
+</div>
+
+<script>
+    // --- SKRIP UNTUK HEADER & MENU MOBILE ---
+    const header = document.getElementById('main-header');
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileLinks = document.querySelectorAll('.nav-link-mobile');
+
+    // 1. Ubah background header saat scroll (DENGAN PERBAIKAN)
+    if (header) { // <-- TAMBAHKAN PENGECEKAN INI
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+    }
+
+    // 2. Buka/tutup menu mobile dengan animasi (Sudah diperbaiki sebelumnya)
+    if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('open');
+            mobileMenu.classList.toggle('invisible');
+            mobileMenu.classList.toggle('opacity-0');
+        });
+    }
+
+    // 3. Tutup menu saat link mobile di-klik (Sudah diperbaiki sebelumnya)
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (mobileMenu && menuToggle) {
+                menuToggle.classList.remove('open');
+                mobileMenu.classList.add('invisible');
+                mobileMenu.classList.add('opacity-0');
+            }
+        });
+    });
+
+    // --- SKRIP UNTUK INDIKATOR LINK AKTIF (Sudah diperbaiki sebelumnya) ---
+    document.addEventListener('DOMContentLoaded', () => {
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('a.nav-link');
+
+        if (sections.length > 0 && navLinks.length > 0) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('data-section') === entry.target.id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, { rootMargin: '-50% 0px -50% 0px' });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        }
+    });
+</script>
+<style>
+    /* Style untuk header agar lebih jelas dan dinamis */
+    #main-header {
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    }
+    .header-scrolled {
+        background-color: rgba(23, 37, 51, 0.85); /* bg-slate-900/85 */
+        backdrop-filter: blur(12px);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        text-shadow: none;
+    }
+
+    /* Style untuk link navigasi yang aktif */
+    a.nav-link.active span:first-child {
+        color: #c59d5f; /* Warna brand-gold */
+    }
+    a.nav-link.active span:last-child {
+        transform: scaleX(1);
+    }
+
+    /* Style dan animasi untuk tombol hamburger */
+    .hamburger-line {
+        display: block;
+        width: 1.5rem;
+        height: 2px;
+        background-color: white;
+        border-radius: 2px;
+        transition: all 0.3s ease-in-out;
+    }
+    #menu-toggle.open .hamburger-line:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    #menu-toggle.open .hamburger-line:nth-child(2) {
+        opacity: 0;
+    }
+    #menu-toggle.open .hamburger-line:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+</style>

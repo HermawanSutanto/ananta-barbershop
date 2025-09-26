@@ -1,0 +1,31 @@
+---
+// src/components/Gallery.astro
+const galleryImages = [
+    "/doku1.jpg",
+    "/doku2.jpg",
+    "/doku3.jpg",
+    "/doku4.jpg",
+    "/doku5.jpg",
+    "/doku6.jpg",
+]; ---
+<section id="galeri" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-slate-900" style="font-family: 'Playfair Display', serif;">Galeri Gaya</h2>
+            <p class="max-w-xl mx-auto text-lg text-slate-600 mt-4">Lihat beberapa hasil karya terbaik dari barber kami.</p>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {galleryImages.map(imgSrc => (
+                <div class="aspect-square bg-slate-300 rounded-lg overflow-hidden group">
+                    <img src={imgSrc} alt="Contoh model rambut pria di Ananta Barbershop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"/>
+                </div>
+            ))}
+        </div>
+        <div class="text-center mt-12">
+            <a href="#" target="_blank" class="bg-slate-900 text-white font-semibold px-8 py-3 rounded-md hover:bg-slate-700 transition-colors inline-flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V13.5h3M7.385 2.25A2.25 2.25 0 005.135 4.5v15a2.25 2.25 0 002.25 2.25h10.5a2.25 2.25 0 002.25-2.25v-15a2.25 2.25 0 00-2.25-2.25H7.385z" /></svg>
+                Ikuti Kami di Instagram
+            </a>
+        </div>
+    </div>
+</section>

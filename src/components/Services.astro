@@ -1,37 +1,39 @@
 ---
 // src/components/Services.astro
 
-// KATEGORI 1: LAYANAN UTAMA
-const mainServices = [
-    { name: "Gentleman's Haircut", price: "Rp 50.000", desc: "Konsultasi gaya, potong presisi, cuci, hot towel, dan styling akhir dengan pomade premium." },
-    { name: "The Hot Towel & Beard Trim", price: "Rp 35.000", desc: "Nikmati proses pembentukan jenggot yang detail, aplikasi minyak jenggot premium, dan diakhiri kompres handuk panas yang menyegarkan." },
-    { name: "Ladies Haircut", price: "Rp 45.000", desc: "Potong rambut wanita untuk berbagai model, dari trim sederhana hingga gaya baru, termasuk cuci dan blow dry." },
-    { name: "Hair Therapy & Relax", price: "Rp 45.000", desc: "Perawatan rambut intensif dengan hair mask dan vitamin, lengkap dengan pijatan relaksasi pada kepala dan pundak." },
+// KATEGORI 1: LAYANAN POTONG RAMBUT
+const haircutServices = [
+    { name: "Gentleman's Haircut", price: "Rp 30.000", desc: "Potongan presisi sesuai gaya Anda, termasuk styling akhir untuk tampilan sempurna." },
+    { name: "Ladies' Haircut", price: "Rp 30.000", desc: "Potongan rambut modern untuk wanita, dari trim hingga gaya baru, termasuk blow dry." },
 ]
 
-// KATEGORI 2: PAKET KOMBO
-const comboPackages = [
-    { name: "The Ultimate Experience", price: "Rp 75.000", desc: "Paket lengkap Gentleman's Haircut dan Beard Trim. Solusi total untuk penampilan terbaik Anda dengan harga lebih hemat." }
+// KATEGORI 2: LAYANAN PERAWATAN & STYLING
+const treatmentServices = [
+    { name: "Smoothing & Straightening", price: "Rp 150.000", desc: "Mengubah rambut sulit diatur menjadi lurus, lembut, dan mudah ditata.", prefix: "Mulai dari" },
+    { name: "Creative Hair Color", price: "Rp 75.000", desc: "Wujudkan warna rambut impian Anda, dari warna natural hingga fashion color bersama stylist kami.", prefix: "Mulai dari" },
+    { name: "Creambath & Hair Spa", price: "Rp 45.000", desc: "Perawatan menutrisi rambut secara mendalam, lengkap dengan pijatan relaksasi pada kepala dan pundak." },
+    { name: "Classic Shave", price: "Rp 5.000", desc: "Pengalaman cukur klasik menggunakan pisau cukur untuk hasil yang bersih dan rapi." },
 ]
 
-// KATEGORI 3: LAYANAN TAMBAHAN
+// KATEGORI 3: LAYANAN TAMBAHAN (ADD-ONS)
 const addOns = [
-    { name: "Creambath Pria", price: "Rp 15.000" },
-    { name: "Creambath Wanita", price: "Rp 20.000" },
-    { name: "Aplikasi Hair Vitamin / Tonic", price: "Rp 10.000" },
+    { name: "Relaxing Hair Wash (Pria)", price: "Rp 5.000" },
+    { name: "Relaxing Hair Wash (Wanita)", price: "Rp 5.000" },
+    { name: "Hair Vitamin Treatment", price: "Rp 5.000" },
+    { name: "Aplikasi Hair Tonic Premium", price: "Rp 25.000" },
 ]
 ---
 <section id="layanan" class="py-20 bg-white">
     <div class="container mx-auto px-4">
         <div class="text-center mb-16">
-            <h2 class="text-4xl font-bold text-slate-900" style="font-family: 'Playfair Display', serif;">Signature Services</h2>
-            <p class="max-w-xl mx-auto text-lg text-slate-600 mt-4">Setiap layanan dirancang untuk memberikan hasil dan kenyamanan terbaik.</p>
+            <h2 class="text-4xl font-bold text-slate-900" style="font-family: 'Playfair Display', serif;">Our Services</h2>
+            <p class="max-w-xl mx-auto text-lg text-slate-600 mt-4">Layanan lengkap dari potong rambut hingga perawatan untuk pria dan wanita.</p>
         </div>
         
         <div class="max-w-4xl mx-auto">
-            <h3 class="text-2xl font-bold text-slate-800 mb-6" style="font-family: 'Playfair Display', serif;">Layanan Utama</h3>
+            <h3 class="text-2xl font-bold text-slate-800 mb-6" style="font-family: 'Playfair Display', serif;">Potong Rambut</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
-                {mainServices.map(service => (
+                {haircutServices.map(service => (
                     <div class="py-4 border-b-2 border-slate-200 border-dashed">
                         <div class="flex justify-between items-baseline">
                             <h4 class="text-xl font-bold text-slate-900">{service.name}</h4>
@@ -42,13 +44,16 @@ const addOns = [
                 ))}
             </div>
 
-            <h3 class="text-2xl font-bold text-slate-800 mt-16 mb-6" style="font-family: 'Playfair Display', serif;">Paket Kombo</h3>
-            <div>
-                {comboPackages.map(service => (
-                     <div class="bg-slate-50 border-l-4 border-brand-gold p-6 rounded-r-lg">
+            <h3 class="text-2xl font-bold text-slate-800 mt-16 mb-6" style="font-family: 'Playfair Display', serif;">Perawatan & Styling</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
+                 {treatmentServices.map(service => (
+                    <div class="py-4 border-b-2 border-slate-200 border-dashed">
                         <div class="flex justify-between items-baseline">
                             <h4 class="text-xl font-bold text-slate-900">{service.name}</h4>
-                            <p class="text-xl font-bold text-brand-gold flex-shrink-0 ml-4">{service.price}</p>
+                            <div class="text-right ml-4 flex-shrink-0">
+                                {service.prefix && <span class="text-xs text-slate-500 block -mb-1">{service.prefix}</span>}
+                                <p class="text-xl font-bold text-brand-gold">{service.price}</p>
+                            </div>
                         </div>
                         <p class="text-slate-600 mt-2">{service.desc}</p>
                     </div>
@@ -56,7 +61,7 @@ const addOns = [
             </div>
 
             <h3 class="text-2xl font-bold text-slate-800 mt-16 mb-6" style="font-family: 'Playfair Display', serif;">Layanan Tambahan</h3>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-4">
                 {addOns.map(service => (
                      <div class="flex justify-between items-baseline border-b border-slate-200 py-2">
                         <p class="text-slate-700">{service.name}</p>
